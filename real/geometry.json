@@ -1,0 +1,19 @@
+{
+  "arm1": {
+    "length": 255,
+    "width": 40,
+    "mass": 271.4,
+    "pivot_top": 20,
+    "sticker_centre": 205.0,
+    "joint": 207,
+    "mass_pivot": 58.2,
+    "mass_joint": 3.6
+  },
+  "arm2": {
+    "length": 180,
+    "width": 40,
+    "mass": 194.7,
+    "pivot_top": 20,
+    "sticker_centre": 142.67949192431124
+  }
+}
