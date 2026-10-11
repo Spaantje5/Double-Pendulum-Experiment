@@ -7,7 +7,9 @@
     "sticker_centre": 205.0,
     "joint": 207,
     "mass_pivot": 58.2,
-    "mass_joint": 3.6
+    "size_pivot": 40,
+    "mass_joint": 3.6,
+    "diameter_joint": 5
   },
   "arm2": {
     "length": 180,
