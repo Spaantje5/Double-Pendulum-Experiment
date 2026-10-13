@@ -4,6 +4,7 @@ from helper_functions import *
 import json
 import numpy as np
 from pathlib import Path
+print("Starting data processing")
 
 #LOADING CONSTANTS
 
@@ -67,6 +68,7 @@ I2_C = I2_O - M2*COM2**2
 DATA_DIR = BASE_DIR/"data"
 runs = {}
 for f in sorted(DATA_DIR.glob("*.csv")):
+    print("Processing:", f.name)
     data = np.genfromtxt(f, dtype=float, delimiter=",", skip_header=1, missing_values="", filling_values=np.nan)
 
     parts = f.stem.replace("_data", "").split("_")
@@ -88,10 +90,10 @@ for f in sorted(DATA_DIR.glob("*.csv")):
 
     com2 = joint + (np.column_stack((x_red_px, y_red_px)) / ppm - np.array([x_hinge_px, y_hinge_px]) / ppm - joint) * (COM2 / RED)
 
-    theta1_raw = np.arctan2(joint[:, 1], joint[:, 0])
+    theta1_raw = np.arctan2(joint[:, 0], -joint[:, 1])
 
     red_relative = (np.column_stack((x_red_px, y_red_px)) - np.array([x_hinge_px, y_hinge_px])) / ppm
-    theta2_raw = np.arctan2(red_relative[:, 1] - joint[:, 1], red_relative[:, 0] - joint[:, 0])
+    theta2_raw = np.arctan2(red_relative[:, 0] - joint[:, 0], -(red_relative[:, 1] - joint[:, 1]))
 
     theta1_unwrapped = unwrap_with_nans(theta1_raw)
     theta2_unwrapped = unwrap_with_nans(theta2_raw)
@@ -110,4 +112,5 @@ for f in sorted(DATA_DIR.glob("*.csv")):
         "red": red_relative
     }
 
+print("Finished processing")
 print(len(runs), "runs loaded")
