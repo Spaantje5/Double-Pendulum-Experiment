@@ -50,7 +50,7 @@ I1_O = (
     + GEOM["arm1"].get("mass_pivot", 0)*g *
         (GEOM["arm1"].get("size_pivot", 0)*mm)**2/6
     + GEOM["arm1"].get("mass_joint", 0)*g * (
-        (GEOM["arm1"].get("diameter_joint", 0)*mm/2)**2
+        (GEOM["arm1"].get("diameter_joint", 0)*mm/2)**2/2
         + JOINT1**2
     )
 )
@@ -106,7 +106,8 @@ for f in sorted(DATA_DIR.glob("*.csv")):
         "theta1_raw": theta1_raw,
         "theta2_raw": theta2_raw,
         "theta1_unw": theta1_unwrapped,
-        "theta2_unw": theta2_unwrapped
+        "theta2_unw": theta2_unwrapped,
+        "red": red_relative
     }
 
 print(len(runs), "runs loaded")
